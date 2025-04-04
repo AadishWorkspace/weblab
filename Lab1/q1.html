@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 Table with Animation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            margin: 20px auto;
+        }
+        td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+        tr:nth-child(odd) {
+            background-color: #add8e6; /* Light blue for odd rows */
+        }
+        tr:nth-child(even) {
+            background-color: #ffffff; /* White for even rows */
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+        }
+        .container {
+            position: relative;
+            margin: auto;
+            width: 400px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table id="myTable">
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+        </table>
+        <img id="myImage" src="https://static.vecteezy.com/system/resources/thumbnails/021/797/174/small/arrow-left-icon-isolated-on-white-background-vector.jpg" alt="Left Arrow">
+    </div>
+    <button id="moveButton" style="display: block; margin: 20px auto;">Move Right to Left</button>
+    <footer>Created by Aadish</footer>
+    <script>
+        $(document).ready(function () {
+            $("#moveButton").click(function () {
+                $(".container").animate({ left: '-=250px' }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

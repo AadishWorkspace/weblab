@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Temp</title>
+    <script src = "https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <table>
+            <tr>
+                <td>1</td><td>1</td><td>1</td>
+            </tr>
+            <tr>
+                <td>1</td><td>1</td><td>1</td>
+            </tr>
+            <tr>
+                <td>1</td><td>1</td><td>1</td>
+            </tr>
+        </table>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/021/797/174/small/arrow-left-icon-isolated-on-white-background-vector.jpg">
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#movebutton").click(function(){
+                $(".container").animate({left:'-=250px'}, 1000)
+            })
+        })
+    </script>
+</body>
+</html>
