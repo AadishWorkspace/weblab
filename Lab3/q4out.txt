@@ -1,0 +1,18 @@
+def get_most_frequent_words(file_path):
+except Exception as e:
+except FileNotFoundError:
+file_path = input("Enter the path of the text file: ")
+for word, count in most_common_words.items():
+from collections import Counter
+get_most_frequent_words(file_path)
+if __name__ == "__main__":
+most_common_words = dict(word_count.most_common(10))
+print("Error: File not found.")
+print("Top 10 most frequently appearing words:")
+print(f"An error occurred: {e}")
+print(f"{word}: {count}")
+text = file.read().lower()
+try:
+with open(file_path, 'r', encoding='utf-8') as file:
+word_count = Counter(words)
+words = text.split()

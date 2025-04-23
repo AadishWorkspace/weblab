@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card Designer</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            display: inline-block;
+            width: 400px;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        .card {
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+            margin: 0 auto;
+            background-color: rgb(18, 171, 179);
+            text-align: center;
+            padding: 10px;
+        }
+        .message {
+            margin-top: 100px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        img {
+            margin-top: 20px;
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Made By Aadish</h2>
+    <div class="container">
+        <div class="controls">
+            <label for="bgColor">Choose a background color:</label>
+            <select id="bgColor">
+                <option value="yellow">Yellow</option>
+                <option value="lightblue">Light Blue</option>
+                <option value="pink">Pink</option>
+                <option value="lightgreen">Light Green</option>
+            </select>
+            <br><br>
+            <label for="fontColor">Choose a font color:</label>
+            <select id="fontColor">
+                <option value="black">Black</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+            </select>
+            <br><br>
+            <label for="message">Enter your message:</label>
+            <input type="text" id="message" placeholder="Happy Birthday!">
+        </div>
+        <div class="card" id="birthdayCard">
+            <div class="message" id="cardMessage">Happy Birthday, and many more!</div>
+            <img id="cakeImage" src="https://www.cakeie.com/public/images/Tasty%20Small%20Birthday%20Cake-img1-cakeie.webp" alt="Birthday Cake">
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Change background color
+            $('#bgColor').change(function () {
+                let color = $(this).val();
+                $('#birthdayCard').css('background-color', color);
+            });
+
+            // Change font color
+            $('#fontColor').change(function () {
+                let color = $(this).val();
+                $('#cardMessage').css('color', color);
+            });
+
+            // Update message
+            $('#message').on('input', function () {
+                let message = $(this).val();
+                $('#cardMessage').text(message || "Happy Birthday, and many more!");
+            });
+        });
+    </script>
+</body>
+</html>

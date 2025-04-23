@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee CRUD Operations</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4A5568;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2D3748;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #CBD5E0;
+      border-radius: 6px;
+      background-color: #EDF2F7;
+      font-size: 16px;
+      color: #2D3748;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4299E1;
+      box-shadow: 0 0 3px rgba(66, 153, 225, 0.5);
+    }
+
+    .button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      background-color: #3182CE;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 16px;
+    }
+
+    .button:hover {
+      background-color: #2B6CB0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #E2E8F0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #E2E8F0;
+      color: #2D3748;
+    }
+
+    .actions button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .edit-btn {
+      background-color: #F6AD55;
+    }
+
+    .delete-btn {
+      background-color: #E53E3E;
+    }
+
+    .edit-btn:hover {
+      background-color: #DD6B20;
+    }
+
+    .delete-btn:hover {
+      background-color: #C53030;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      table {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Employee CRUD Operations</h1>
+
+    <!-- Form for Adding/Editing Employees -->
+    <form id="employeeForm">
+      <label for="empName">Employee Name</label>
+      <input type="text" id="empName" placeholder="Enter employee name" required>
+
+      <label for="empAge">Age</label>
+      <input type="number" id="empAge" placeholder="Enter employee age" required>
+
+      <label for="empDept">Department</label>
+      <input type="text" id="empDept" placeholder="Enter employee department" required>
+
+      <button type="submit" class="button">Add Employee</button>
+    </form>
+
+    <!-- Table to Display Employee Data -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="employeeTable">
+        <!-- Dynamic rows will be added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Get form and table elements
+    const employeeForm = document.getElementById('employeeForm');
+    const employeeTable = document.getElementById('employeeTable');
+
+    let employees = [];
+    let editIndex = -1;
+
+    // Function to render employees in the table
+    function renderTable() {
+      employeeTable.innerHTML = '';
+      employees.forEach((emp, index) => {
+        employeeTable.innerHTML += `
+          <tr>
+            <td>${emp.name}</td>
+            <td>${emp.age}</td>
+            <td>${emp.department}</td>
+            <td class="actions">
+              <button class="edit-btn" onclick="editEmployee(${index})">Edit</button>
+              <button class="delete-btn" onclick="deleteEmployee(${index})">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    // Add or Update Employee
+    employeeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('empName').value;
+      const age = document.getElementById('empAge').value;
+      const department = document.getElementById('empDept').value;
+
+      if (editIndex === -1) {
+        employees.push({ name, age, department });
+      } else {
+        employees[editIndex] = { name, age, department };
+        editIndex = -1;
+      }
+
+      employeeForm.reset();
+      renderTable();
+    });
+
+    // Edit Employee
+    function editEmployee(index) {
+      const emp = employees[index];
+      document.getElementById('empName').value = emp.name;
+      document.getElementById('empAge').value = emp.age;
+      document.getElementById('empDept').value = emp.department;
+      editIndex = index;
+    }
+
+    // Delete Employee
+    function deleteEmployee(index) {
+      employees.splice(index, 1);
+      renderTable();
+    }
+
+    // Initial render
+    renderTable();
+  </script>
+</body>
+</html>
